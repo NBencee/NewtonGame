@@ -58,7 +58,7 @@ def set_level(score, SPEED):
 
 def drop_enemies(enemy_list):
     delay = random.random()
-    if len(enemy_list) < 10 and delay < 0.1:
+    if len(enemy_list) < 1 and delay < 1:
         x_pos = random.randint(0,WIDTH - enemy_size)
         y_pos = 0
         enemy_list.append([x_pos, y_pos])
@@ -69,13 +69,14 @@ def draw_enemies(enemy_list):
 
 def update_enemy_positions(enemy_list, score):
     for i, enemy_pos in enumerate(enemy_list):
-        #Updates Enemy Position
+        # Updates Enemy Position
         if enemy_pos[1] >= 0 and enemy_pos[1] < HEIGHT:
             enemy_pos[1] += SPEED
         else:
             enemy_list.pop(i)
             score += 1
     return score
+
 
 def collision_check(enemy_list, player_pos):
     for enemy_pos in enemy_list:
@@ -116,8 +117,7 @@ while running:
         SPEED = set_level(score, SPEED)
         
         if collision_check(enemy_list, player_pos):
-            game_over = True
-            GAME_OVER(score)
+            score += 1  # Pontszám növelése, ha elkapják az ellenséget
 
         draw_enemies(enemy_list)
         pygame.draw.rect(screen, BLUE, (player_pos[0], player_pos[1], player_size, player_size))
@@ -129,6 +129,12 @@ while running:
     label = FONT.render(text, 1, YELLOW)
     screen.blit(label, (10, 10))  # Pontszám megjelenítése a képernyő bal felső sarkában
     
+    # Ellenőrzés, hogy az ellenség elért-e a játékosig
+    for enemy_pos in enemy_list:
+        if enemy_pos[1] > HEIGHT - player_size:
+            game_over = True
+            GAME_OVER(score)
+            break  # Kilépés a ciklusból, ha az egyik ellenség elért a játékosig
+
     pygame.display.update()
     clock.tick(30)
-
