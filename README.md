@@ -4,7 +4,7 @@ Ez egy nagyon egyszerű folyamat:
 2. Utána a `Download ZIP` gombot nyomd meg!
 3. Csomagold ki a letöltött .zip fájlt
 4. Futtatsd a monitorodnak megfelelő arányú verziót. (`16_9_run.bat` ➡️ **16:9**-es arányú monitorokhoz, `4_3_run.bat` ➡️ a **4:3**-as képarányú monitorokhoz)
-5. **Ha feldobja, hogy "A Windows megvédte a számítógépét" akkor nyomj a "__További információk__" fülre és utána a 'Futtatás midenképpen' opciót válaszd. Várj pár másodpercet és a játék már el is indul :)**
+5. **Ha feldobja, hogy "A Windows megvédte a számítógépét" akkor nyomj a "<u>További információk<u>" fülre és utána a 'Futtatás midenképpen' opciót válaszd. Várj pár másodpercet és a játék már el is indul :)**
 
 *Ha szükséges: Telepítsd a pygame bővítményt a `pip install pygame` paranccsal a parancssor segítségével.*
 
