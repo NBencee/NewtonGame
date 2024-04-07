@@ -6,11 +6,11 @@ import datetime
 
 pygame.init()
 
-WIDTH = 1440
-HEIGHT = 1024
+WIDTH = int(1440 * 0.7)
+HEIGHT = int(1024 * 0.7)
 
-NEWTON_IMAGE = pygame.transform.scale(pygame.image.load("newton.png"), (201, 346))
-APPLE_IMAGE = pygame.transform.scale(pygame.image.load("apple.png"), (100, 100))
+NEWTON_IMAGE = pygame.transform.scale(pygame.image.load("newton.png"), (int(201 * 0.7), int(346 * 0.7)))
+APPLE_IMAGE = pygame.transform.scale(pygame.image.load("apple.png"), (int(100 * 0.7), int(100 * 0.7)))
 
 BKG_COLOR = (0, 0, 0)
 YELLOW = (255, 255, 0)
@@ -20,13 +20,13 @@ BLACK = (0, 0, 0)
 game_bg = pygame.image.load("game_bg.png")
 game_bg = pygame.transform.scale(game_bg, (WIDTH, HEIGHT))
 
-player_size = 150
+player_size = int(150 * 0.7)
 player_pos = [WIDTH / 2, HEIGHT - 2 * player_size]
 
-enemy_size = 100
+enemy_size = int(100 * 0.7)
 enemy_pos = [random.randint(0, WIDTH - enemy_size), 0]
 enemy_list = [enemy_pos]
-SPEED = 10
+SPEED = int(10 * 0.7)
 
 score = 0
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -35,7 +35,7 @@ game_over = False
 
 clock = pygame.time.Clock()
 
-FONT = pygame.font.Font("level-up.otf", 72)
+FONT = pygame.font.Font("level-up.otf", int(72 * 0.7))
 
 
 def save_scores(scores):
@@ -61,7 +61,7 @@ def draw_menu():
     screen.blit(menu_bg, (0, 0))
 
     title_text = "NEWTON GAME"
-    title_font = pygame.font.Font("level-up.otf", 37)
+    title_font = pygame.font.Font("level-up.otf", int(37 * 0.7))
     title_label = title_font.render(title_text, True, YELLOW)
     title_rect = title_label.get_rect(center=(WIDTH / 1.97, HEIGHT / 8.7))
 
@@ -81,7 +81,7 @@ def draw_menu():
     text_play = "Press SPACE to play"
     label_play = FONT.render(text_play, True, BLACK)
 
-    larger_font = pygame.font.Font("level-up.otf", 76)
+    larger_font = pygame.font.Font("level-up.otf", int(76 * 0.7))
     label_play = larger_font.render(text_play, True, BLACK)
 
     scale_factor = 1 + 0.1 * math.sin(pygame.time.get_ticks() / 300)
@@ -104,25 +104,25 @@ def draw_menu():
     screen.blit(scaled_text, text_rect)
 
     developer_text = "Developers: H. Andris, N. Bence, Z. Botond (10)"
-    developer_label = pygame.font.Font("level-up.otf", 22).render(developer_text, True, WHITE)
-    developer_rect = developer_label.get_rect(bottomleft=(20, HEIGHT - 20))
+    developer_label = pygame.font.Font("level-up.otf", int(22 * 0.7)).render(developer_text, True, WHITE)
+    developer_rect = developer_label.get_rect(bottomleft=(int(20 * 0.7), HEIGHT - int(20 * 0.7)))
 
-    outline_thickness = 2
+    outline_thickness = int(2 * 0.7)
     outline_rect = developer_rect.inflate(outline_thickness * 2, outline_thickness * 2)
     pygame.draw.rect(screen, BLACK, outline_rect)
     screen.blit(developer_label, developer_rect)
 
     copyright_text = "Copyright Kenyer CO. Do not distribute! v0.91"
-    copyright_label = pygame.font.Font("level-up.otf", 20).render(copyright_text, True, WHITE)
-    copyright_rect = copyright_label.get_rect(bottomright=(WIDTH - 20, HEIGHT - 20))
+    copyright_label = pygame.font.Font("level-up.otf", int(20 * 0.7)).render(copyright_text, True, WHITE)
+    copyright_rect = copyright_label.get_rect(bottomright=(WIDTH - int(20 * 0.7), HEIGHT - int(20 * 0.7)))
 
     outline_rect = copyright_rect.inflate(outline_thickness * 2, outline_thickness * 2)
     pygame.draw.rect(screen, BLACK, outline_rect)
     screen.blit(copyright_label, copyright_rect)
 
     current_time = datetime.datetime.now().strftime("UTC+1: %H:%M:%S")
-    time_label = pygame.font.Font("level-up.otf", 30).render(current_time, True, WHITE)
-    time_rect = time_label.get_rect(topright=(WIDTH - 20, 20))
+    time_label = pygame.font.Font("level-up.otf", int(30 * 0.7)).render(current_time, True, WHITE)
+    time_rect = time_label.get_rect(topright=(WIDTH - int(20 * 0.7), int(20 * 0.7)))
     screen.blit(time_label, time_rect)
 
     pygame.display.update()
@@ -130,13 +130,13 @@ def draw_menu():
 def start_level(level):
     global enemy_size, SPEED
     if level == 1:
-        enemy_size = 150
+        enemy_size = int(150 * 0.7)
         SPEED = 6
     elif level == 2:
-        enemy_size = 100
+        enemy_size = int(100 * 0.7)
         SPEED = 10
     elif level == 3:
-        enemy_size = 50
+        enemy_size = int(50 * 0.7)
         SPEED = 15
 
 
@@ -146,7 +146,7 @@ def GAME_OVER(score):
     screen.blit(game_bg, (0, 0))
 
     text = "GAME OVER!"
-    label = pygame.font.Font("level-up.otf", 100).render(text, True, (230,38,0))
+    label = pygame.font.Font("level-up.otf", int(100 * 0.7)).render(text, True, (230,38,0))
     label_rect = label.get_rect(center=(WIDTH / 2, HEIGHT / 3))
 
     breathing = int(10 * (1 + math.sin(pygame.time.get_ticks() / 300)))
@@ -154,7 +154,7 @@ def GAME_OVER(score):
     label_breath = pygame.transform.scale(label, (label.get_width() + breathing, label.get_height() + breathing))
     label_rect_breath = label_breath.get_rect(center=(WIDTH / 2, HEIGHT / 3))
 
-    outline_label = pygame.font.Font("level-up.otf", 105).render(text, True, BLACK)
+    outline_label = pygame.font.Font("level-up.otf", int(105 * 0.7)).render(text, True, BLACK)
     outline_rect = outline_label.get_rect(center=(label_rect_breath.centerx + 2, label_rect_breath.centery + 2))
 
     outline_label = pygame.transform.scale(outline_label, (outline_label.get_width() + breathing, outline_label.get_height() + breathing))
@@ -166,7 +166,7 @@ def GAME_OVER(score):
 
     text_score = "Your Score: " + str(score)
     label_score = FONT.render(text_score, True, YELLOW)
-    label_score_rect = label_score.get_rect(center=(WIDTH / 2, HEIGHT / 2 + 100))
+    label_score_rect = label_score.get_rect(center=(WIDTH / 2, HEIGHT / 2 + int(100 * 0.7)))
 
     outline_label_score = FONT.render(text_score, True, BLACK)
     outline_rect_score = outline_label_score.get_rect(center=(label_score_rect.centerx + 2, label_score_rect.centery + 2))
@@ -177,7 +177,7 @@ def GAME_OVER(score):
 
     text_restart = "Press SPACE to restart."
     label_restart = FONT.render(text_restart, True, YELLOW)
-    label_restart_rect = label_restart.get_rect(center=(WIDTH / 2, HEIGHT / 2 + 200))
+    label_restart_rect = label_restart.get_rect(center=(WIDTH / 2, HEIGHT / 2 + int(200 * 0.7)))
 
     outline_label_restart = FONT.render(text_restart, True, BLACK)
     outline_rect_restart = outline_label_restart.get_rect(center=(label_restart_rect.centerx + 2, label_restart_rect.centery + 2))
@@ -250,12 +250,12 @@ def draw_score(score, score_changed):
         scaled_text_white = pygame.transform.scale(label_white, (int(label_white.get_width() * scale_factor), int(label_white.get_height() * scale_factor)))
         scaled_text_black = pygame.transform.scale(label_black, (int(label_black.get_width() * scale_factor), int(label_black.get_height() * scale_factor)))
 
-        text_rect = scaled_text_white.get_rect(topleft=(10, 10))
+        text_rect = scaled_text_white.get_rect(topleft=(int(10 * 0.7), int(10 * 0.7)))
 
         screen.blit(scaled_text_black, (text_rect.x + 2, text_rect.y + 2))
         screen.blit(scaled_text_white, text_rect)
     else:
-        text_rect = label_white.get_rect(topleft=(10, 10))
+        text_rect = label_white.get_rect(topleft=(int(10 * 0.7), int(10 * 0.7)))
 
         screen.blit(label_black, (text_rect.x + 2, text_rect.y + 2))
         screen.blit(label_white, text_rect)
