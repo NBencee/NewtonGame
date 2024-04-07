@@ -88,7 +88,7 @@ def draw_menu():
 
     screen.blit(scaled_text, text_rect)
 
-    developer_text = "Developers: H. Andris, N. Bence, Z. Botond (10)"
+    developer_text = "Developers: H. András, N. Bence, Z. Botond (10)"
     developer_label = pygame.font.Font("level-up.otf", 24).render(developer_text, True, WHITE)  # Reduced font size
     developer_rect = developer_label.get_rect(bottomleft=(20, HEIGHT - 40))  # Adjusted position
 
