@@ -6,3 +6,4 @@ Ez egy nagyon egyszerű folyamat:
 4. Futtatsd a monitorodnak megfelelő arányú verziót. (`final_16_9.py` ➡️ **16:9**-es arányú monitorokhoz, `final_4_3.py` ➡️ a **4:3**-as képarányú monitorokhoz)
 
 *Ha szükséges: Telepítsd a pygame bővítményt a `pip install pygame` paranccsal a parancssor segítségével.*
+Szia én Andris vagyok:)
