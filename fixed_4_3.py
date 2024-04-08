@@ -6,8 +6,8 @@ import datetime
 
 pygame.init()
 
-WIDTH = int(1440 * 0.67)
-HEIGHT = int(1024 * 0.67)
+WIDTH = int(1280)
+HEIGHT = int(1024)
 
 NEWTON_IMAGE = pygame.transform.scale(pygame.image.load("newton.png"), (int(201 * 0.67), int(346 * 0.67)))
 APPLE_IMAGE = pygame.transform.scale(pygame.image.load("apple.png"), (int(100 * 0.67), int(100 * 0.67)))
