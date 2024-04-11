@@ -291,9 +291,9 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     player_pos[0] -= player_size
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     player_pos[0] += player_size
                 elif event.key == pygame.K_SPACE and game_over:
                     restart_game()
